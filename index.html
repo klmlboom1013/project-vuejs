@@ -1,8 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <title>simple-vue-test</title>
+    <!--
+      #### width=device-width ####
+        기기의 너비만큼 웹 페이지의 너비를 지정하라는 의미.
+      ### initial-scale=1.0 ###
+        페이지의 배율로, 페이지가 로딩되었을 때 Zoom 레벨을 실행을 의미.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 버튼은 일반문자열 대신 어썸 아이콘을 활용. -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- 
+      ### 파비콘 설정 ### :: 브라우저 웹싸이트 제목 왼쪽에 표시되는 로고
+    -->
+    <link rel="shortcut icon" href="src/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="src/assets/favicon.ico" type="image/x-icon">
+    <!--
+      ### 폰트 설정 ### :: 구글 폰트 중 Ubuntu 사용.
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    
+    <title>Vue.js Todo</title>
   </head>
   <body>
     <div id="app"></div>
