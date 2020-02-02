@@ -1,0 +1,130 @@
+### 뷰 프로젝트 구성 ###
+
+1. 싱글파일 컴포넌트 체계
+    - .vue 파일로 프로젝트 구조를 구성하는 방식 이다.
+    - 확장자 .vue 파일 1개는 뷰 애플리케이션을 구성하는 1개의 컴포넌트와 동일 하다.
+
+2. .vue 파일의 기본 구조.
+    ---------------------------------------------
+    <template>
+        HTML 태그 내용
+        화면에 표시할 요소들을 정의하는 영역
+        예) HTML + 뷰 데이터 바인딩
+    </template>
+
+    <script>
+        export default {
+            자바스크립트 내용
+            뷰 컴포넌트의 내용을 정의하는 영역
+            예) template, data, method 등.
+        }
+    </script>
+
+    <style>
+        CSS 스타일 내용
+        템플릿에 추가한 HTML 태그의 CSS 스타일을 정의하는 영역.
+    </style>
+    ---------------------------------------------
+    export default { } 코드는 ES6의 자바스크립트 모듈화와 관련된 문법 이다.
+
+3. 뷰 CLI
+    - .vue 파일을 웹 브라우저가 인식할 수 있는 형태의 파일로 변환해주는 웹펙(Webpack)이나 브라우저리파이(Browserify)와 같은 도구가 필요 하다.
+    - 웹팩은 웹 앱의 자원(HTML, CSS, 이미지) 들을 자바스크립트 모듈로 변환하여 하나로 묶어 웹 성능을 향상 시켜주는 자바스크립트 모듈 번들러 이다.
+    - 브라우저파이 또한 웹팩과 유사한 모듈 번들러지만 다른점은 웹 자원 압축이나 빌드 자동화 같은 기능은 없다.
+    - 뷰 CLI는 웹팩이나 브라우저파이와 같은 모듈러가 아닌 커맨드창에서 명령어로 특정 동작을 수행할 수 잇는 도구 이다.
+    - 뷰 cli 설치
+        > npm install vue-cli -global
+
+4. 뷰 cli 명령어
+    - 뷰 개발을 시작할 때 초기 프로젝트를 쉽게 구성해주는 명령어가 vue init 이다.
+    - 뷰 init 시 사용하는 템블릿 종류
+        > vue init webpack              : 고급 웹팩 기능을 활용한 프로젝트 구성. 테스팅, 문법 검사등 지원.
+        > vue init webpack-simple       : 웹팩 최소 기능을 활용한 프로젝트 구성. 빠른 화면 프로토타이핑 용.
+        > vue init browserify           : 고급 브라우저리파이 기능을 활용한 프로젝트 구성. 테스팅, 문법 검사등 지원.
+        > vue init browserify-simple    : 브라우저리파이 최소 기능을 확용한 프로젝트 구성. 빠른 화면 프로토타이핑 용.
+        > vue init simple               : 최소 뷰 기능만 들어간 HTML 파일 1개 생성.
+        > vue init pwa                  : 웹팩 기반의 프로그레시브 웹 앱 기능을 지원하는 뷰 프로젝트
+
+5. 뷰 프로젝트 생성.
+    - 명령프롬프트창에 뷰 프로젝트 생성 명령어 입력 
+        > vue init webpack-simple
+    ----------------------------------------------------------
+    Generate project in current directory?      <현재 경로에 프로젝트를 생성할 것인가?>
+    Project name?                               <프로젝트 이름은?>
+    Project description?                        <프로젝트 설명?>
+    Author?                                     <소스 코드 제작자 이름?>
+    License?                                    <리이선스 유형?>
+    Use sass?                                   <Sass를 사용할 것인가?>
+    ----------------------------------------------------------
+    ** Sass ** > 확장된 CSS 언어
+
+    - 뷰 프로젝트 생성이 완료되면 아래와 같이 애플리케이션 구동을 위한 명령어 안내가 뜬다.
+    ----------------------------------------------------------
+    vue-cli · Generated "project-vuejs".
+
+    To get started:
+   
+    npm install                                 <npm install을 입력하여 뷰 애플리케이션 구동을 위한라이브러리를 다운 받는다.>
+    npm run dev
+    ----------------------------------------------------------
+
+6. 뷰 프로젝트 폴더의 기본 구조
+    - node-modules          <npm install 명령어로 다운받은 라이브러리가 존재하는 위치.>
+    - scr                   <.vue 파일을 비롯하여 애플리케이션이 동자하는데 필여한 로직이 들어갈 위치.>
+    - .babeirc              
+    - .gitignore            
+    - index.html            <뷰로 만든 웹 앱의 시작점. npm run dev 실행 시 로딩되는 파일.>
+    - package-lock.json     
+    - package.json          <npm 설정 파일. 뷰 애애플리케이션이 동작하는 데 필요한 라이브러리들을 정의하는 파일.>
+    - README.md             <>
+    - webpack.config.js     <웹팩 설정 파일. 우베팩 빌드를 위해 필요한 로직들을 정의하는 파일.>
+
+7. package.json 구조
+    - 프로젝트 정보
+    ----------------------------------------------------------
+        "name": "simple-vue-test",
+        "description": "A Vue.js project",
+        "version": "1.0.0",
+        "author": "klmlboom1013 <klmlboom1013@gmail.com>",
+        "license": "MIT",
+    ----------------------------------------------------------
+
+    - npm 실행 명령어
+    ----------------------------------------------------------
+        "scripts": {
+            "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+            "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+        },
+    ----------------------------------------------------------
+
+    - 뷰, 웹팩 관련 라이브러리
+    ----------------------------------------------------------
+        "dependencies": {
+            "vue": "^2.5.11"
+        },
+        "browserslist": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+        ],
+        "devDependencies": {
+            "babel-core": "^6.26.0",
+            "babel-loader": "^7.1.2",
+            "babel-preset-env": "^1.6.0",
+            "babel-preset-stage-3": "^6.24.1",
+            "cross-env": "^5.0.5",
+            "css-loader": "^0.28.7",
+            "file-loader": "^1.1.4",
+            "vue-loader": "^13.0.5",
+            "vue-template-compiler": "^2.4.4",
+            "webpack": "^3.6.0",
+            "webpack-dev-server": "^2.9.1"
+        }
+    ----------------------------------------------------------
+
+    ** npm install 을 실행 하면 package.json의 라이브러리 목록이 전부 node_modules 폴더 밑에 설치 된다.
+    웹팩을 빌드하기위한 바벨(Babel) 및 여러가지 로더, 우베백 데브서버 등의 라이브러리와 뷰를 구현하기 위한 뷰 코어 라이브러리 등이 철치 된다.
+
+4. 뷰 실행.
+    - npm run dev 명령어 실행.
+    - 브라유저에서 localhost:8080으로 접속하면 index.html파일이 실행 된다.
