@@ -12,7 +12,8 @@
 export default {
     data() {
         return {
-            newTodoItem: ''
+            newTodoItem: '',
+            index: 0
         }
     },
     methods: {
@@ -24,13 +25,26 @@ export default {
                     - 브라우저의 Storage 영역에 해당 도메인으로 데이터를 저장 한다.
                     - 브라우저를 종료했다가 다시 열어 해당 도메인으로 접근하면 이전에 저장된 데이터를 재사용 가능 하다.
                 */
-                localStorage.setItem(value, value);
+                localStorage.setItem("TODO_LIST_"+this.index, value);
+                this.index++;
                 this.clearInput();
             }
         },
         clearInput() {
             this.newTodoItem = '';
         }
+    },
+    created: function() {
+        var cnt = 0;
+        for(var i=0; i < localStorage.length; i++){
+            var key = localStorage.key(i);
+            if(key.indexOf("TODO_LIST_")!=0){
+                continue;
+            }
+            cnt++;
+        }
+        this.index = cnt;
+        console.log("localStorage.lengh = ", this.index);
     }
 }
 </script>
