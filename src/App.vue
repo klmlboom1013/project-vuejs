@@ -1,9 +1,9 @@
 <template>
     <div id="app">
       <TodoHeader></TodoHeader>
-      <TodoInput></TodoInput>
-      <TodoList></TodoList>
-      <TodoFooter></TodoFooter>
+      <TodoInput v-on:addTodo="addTodo"></TodoInput>
+      <TodoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
+      <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
     </div>
 </template>
 
@@ -15,13 +15,38 @@ import TodoList   from "./components/TodoList.vue";
 import TodoFooter from "./components/TodoFooter.vue";
 
 export default {
-    // 컴포넌트 등록
-    components: {
-      'TodoHeader'  : TodoHeader,
-      'TodoInput'   : TodoInput,
-      'TodoList'    : TodoList,
-      'TodoFooter'  : TodoFooter
+  data() {
+    return {
+      todoItems: [] /* 데이터속성 todoItems 반환. */
     }
+  },
+  created() {
+    for(var i=0; i < localStorage.length; i++){
+        this.todoItems.push(localStorage.key(i));
+    }
+  },
+  methods: {
+    addTodo(todoItem){
+      /* 로컬 스토리지에 데이터를 추가 */
+      localStorage.setItem(todoItem, todoItem);
+      this.todoItems.push(todoItem)
+    },
+    clearAll (){
+      localStorage.clear();
+      this.todoItems = [];
+    },
+    removeTodo(todoItem, index){
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
+    }
+  },
+  /* 컴포넌트 등록 */
+  components: {
+    'TodoHeader'  : TodoHeader,
+    'TodoInput'   : TodoInput,
+    'TodoList'    : TodoList,
+    'TodoFooter'  : TodoFooter
+  }
 }
 </script>
 

@@ -2,9 +2,9 @@
 <template>
     <section>
         <ul>
-            <li v-for="(todoItem, index) in todoItems" v-bind:key="index" class="shadow">
+            <li v-for="(todoItem, index) in propsdata" v-bind:key="index" class="shadow">
                 <i class="checkBtn fa fa-check" aria-hidden="true"></i>
-                {{ todoItem[1] }}
+                {{ todoItem }}
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </span>
@@ -15,30 +15,13 @@
 
 <script>
 export default {
-    data() {
-        return {
-            todoItems: []
-        }
-    },
+    props: ['propsdata'],
     methods: {
         removeTodo(todoItem, index){
-            var key = todoItem[0];
-            var val = todoItem[1];
-            console.log("Remove TodoItam = {", key,":",val,"}");
-            localStorage.removeItem(key);
-            this.todoItems.splice(index, 1);
-        }
-    },
-    created() {
-        for(var i=0; i < localStorage.length; i++){
-            var key = localStorage.key(i);
-            if(key.indexOf("TODO_LIST_")!=0){
-                continue;
-            }
-            var todoInfo = [key, localStorage.getItem(key)];
-            this.todoItems.push(todoInfo);
+            this.$emit('removeTodo', todoItem, index);
         }
     }
+    
 }
 </script>
 
