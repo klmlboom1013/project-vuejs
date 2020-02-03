@@ -1,3 +1,8 @@
+<!--
+모달 vue 예제 소스
+https://vuejs.org/v2/examples/modal.html
+-->
+
 <!-- 할 일 입력 및 추가 -->
 <template>
     <div class="inputBox shadow">
