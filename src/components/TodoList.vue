@@ -1,15 +1,15 @@
 <!-- 할 일 목록 표시 및 특정 할 일 삭제. -->
 <template>
     <section>
-        <ul>
-            <li v-for="(todoItem, index) in propsdata" v-bind:key="index" class="shadow">
+        <transition-group name="list" tag="ul">
+            <li v-for="(todoItem, index) in propsdata" :key="index" class="shadow">
                 <i class="checkBtn fa fa-check" aria-hidden="true"></i>
                 {{ todoItem }}
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </section>
 </template>
 
@@ -32,7 +32,6 @@ export default {
         margin-top: 0px;
         text-align: left;
     }
-    
     li{
         display: flex;
         min-height: 50px;
@@ -43,15 +42,27 @@ export default {
         background: white;
         border-radius: 5px;
     }
-
     .checkBtn {
         line-height: 45px;
         color: #62acde;
         margin-right: 5px;
     }
-
     .removeBtn {
         margin-left: auto;
         color: #de4343;
+    }
+    .list-item{
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .list-move{
+        transition: transform 1s;
+    }
+    .list-enter, .list-leave-active {
+        transition: all 1s;
+    }
+    .list-enter, .list-leave-to{
+        opacity: 0;
+        transition: translateY(30px);
     }
 </style>
