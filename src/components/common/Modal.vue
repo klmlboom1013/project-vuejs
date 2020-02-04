@@ -1,3 +1,7 @@
+<!--
+모달 vue 예제 소스
+https://vuejs.org/v2/examples/modal.html
+-->
 <template>
   <transition name="modal">
     <div class="modal-mask">
