@@ -1,8 +1,7 @@
-<!-- 할 일 목록 표시 및 특정 할 일 삭제. -->
 <template>
   <section>
     <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in propsdata" :key="index" class="shadow">
+      <li v-for="todoItem in propsdata" v-bind:key="todoItem" class="shadow">
         <i class="checkBtn fa fa-check" aria-hidden="true"></i>
         {{ todoItem }}
         <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
