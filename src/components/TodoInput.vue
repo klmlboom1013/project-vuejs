@@ -10,8 +10,7 @@
       <h3 slot="header">경고</h3>
       <span slot="body" @click="showModal=false">할 일을 입력하세요.</span>
       <span slot="footer" @click="showModal=false">
-        OK
-        <!--<i class="closeModalBtn fa fa-times" aria-hidden="true"></i>-->
+        닫기<i class="closeModalBtn fa fa-times" aria-hidden="true"></i>
       </span>
     </modal>
   </div>
@@ -31,7 +30,7 @@ export default {
       if (this.newTodoItem == "") {
         this.showModal = !this.showModal;
         return;
-      }
+      } 
       var value = this.newTodoItem && this.newTodoItem.trim();
       this.$emit("addTodo", value);
       this.clearInput();

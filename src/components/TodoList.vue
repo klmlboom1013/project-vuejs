@@ -1,7 +1,7 @@
 <template>
   <section>
     <transition-group name="list" tag="ul">
-      <li v-for="todoItem in propsdata" v-bind:key="todoItem" class="shadow">
+      <li v-for="(todoItem, index) in propsdata" v-bind:key="index" class="shadow">
         <i class="checkBtn fa fa-check" aria-hidden="true"></i>
         {{ todoItem }}
         <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
